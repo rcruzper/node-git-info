@@ -1,6 +1,6 @@
 {
   "name": "node-git-info",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Creates a git.properties file with git information of the current commit",
   "files": [
     "lib/",
