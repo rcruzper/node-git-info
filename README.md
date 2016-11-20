@@ -13,7 +13,7 @@ Node module that creates a git.properties file with information about the curren
 $ npm install -g node-git-info
 $ node-git-info
 ```
-it will returns:
+it will returns a file named ```git.properties```:
 ```ini
 git.commit.id.abbrev: 42954d1
 git.commit.user.email: user@email.com
