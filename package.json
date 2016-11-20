@@ -1,0 +1,51 @@
+{
+  "name": "node-git-info",
+  "version": "1.0.0",
+  "description": "Creates a git.properties file with git information of the current commit",
+  "files": [
+    "lib/",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "lib/index",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "coveralls": "2.11.15",
+    "eslint": "3.10.2",
+    "istanbul": "0.4.5",
+    "mocha": "3.1.2",
+    "sinon": "1.17.6",
+    "sinon-chai": "2.8.0",
+    "utils-fs-read-properties": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node lib/gitProperties",
+    "test:unit": "istanbul test _mocha -- test/unit --reporter spec --recursive",
+    "pretest": "eslint .",
+    "test": "npm run test:unit --coverage",
+    "posttest": "npm run check-coverage",
+    "check-coverage": "istanbul check-coverage --statement 75 --branch 50 --function 100 --lines 75",
+    "coveralls": "cat ./build/coverage/lcov.info | coveralls"
+  },
+  "author": "Raúl Cruz <rcruzper@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "3.4.6",
+    "child-process-promise": "2.2.0",
+    "moment": "2.16.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rcruzper/node-git-info.git"
+  },
+  "keywords": [
+    "express",
+    "middleware",
+    "actuator",
+    "healthcheck",
+    "health",
+    "ping",
+    "metrics",
+    "info"
+  ]
+}
