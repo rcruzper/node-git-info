@@ -4,6 +4,7 @@
   "description": "Creates a git.properties file with git information of the current commit",
   "files": [
     "lib/",
+    "bin/",
     "LICENSE",
     "README.md"
   ],
