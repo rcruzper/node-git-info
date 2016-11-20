@@ -1,9 +1,11 @@
 # Node Git Info
 
+[![npm version](https://img.shields.io/npm/v/node-git-info.svg?style=flat)](https://badge.fury.io/js/node-git-info)
 [![Build Status](https://travis-ci.org/rcruzper/node-git-info.svg?branch=master)](https://travis-ci.org/rcruzper/node-git-info)
+[![Coverage Status](https://coveralls.io/repos/github/rcruzper/node-git-info/badge.svg?branch=master)](https://coveralls.io/github/rcruzper/node-git-info?branch=master)
 [![Dependencies Status](https://david-dm.org/rcruzper/node-git-info.svg)](https://david-dm.org/rcruzper/node-git-info)
 
-Creates a git.properties file with information about the current commit.
+Node module that creates a git.properties file with information about the current commit. It is based on [maven git commit id plugin](https://github.com/ktoso/maven-git-commit-id-plugin) for Java.
 
 ## Usage
 
