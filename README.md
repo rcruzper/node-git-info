@@ -15,12 +15,12 @@ $ node-git-info
 ```
 it will returns a file named ```git.properties```:
 ```ini
-git.commit.id.abbrev: 42954d1
-git.commit.user.email: user@email.com
-git.commit.message.full: first commit
-git.commit.id: 42954d1fe6285fea65ba81ea39d71d5b75f9ade0
-git.commit.message.short: first commit
-git.commit.user.name: User Name
-git.branch: master
-git.commit.time: 2016-11-20T11:48:42.000Z
+git.commit.id.abbrev=42954d1
+git.commit.user.email=user@email.com
+git.commit.message.full=first commit
+git.commit.id=42954d1fe6285fea65ba81ea39d71d5b75f9ade0
+git.commit.message.short=first commit
+git.commit.user.name=User Name
+git.branch=master
+git.commit.time=2016-11-20T11:48:42.000Z
 ```
