@@ -11,9 +11,13 @@ Node module that creates a git.properties file with information about the curren
 
 ```sh
 $ npm install -g node-git-info
-$ node-git-info
+$ node-git-info [options]
+
+-d, --directory     Directory to save git.properties file to (directory must already exist).
 ```
-it will returns a file named ```git.properties```:
+It will save a file named ```git.properties```. If the directory option isn't passed, then default location for saving the git.properties file will be the current working directory of the Node.js process.
+
+Example output:
 ```ini
 git.commit.id.abbrev=42954d1
 git.commit.user.email=user@email.com
