@@ -6,6 +6,7 @@ var read = require('utils-fs-read-properties');
 var appRootDir = require('app-root-dir').get();
 var tmp = require('tmp');
 var utils = require('./utils');
+var mock = require('mock-fs');
 
 function checkGitPropertiesFileHasExpectedData(filePath, done) {
 
@@ -34,12 +35,25 @@ describe('executing write method', function () {
     this.timeout(testSuiteLevelTimeout);
 
     var tmpTestOutputFolder; // tempory folder for writing git.properties file to.
+    var gitPropertiesExpectedDefaultFileName = appRootDir + '/' + gitPropertiesFileName;
 
     before(function (done) {
+
         // runs before any tests are executed in this block
-        tmp.dir({dir: appRootDir}, function _tempDirCreated(err, path) {
+
+        tmp.setGracefulCleanup(); // cleanup the temporary files even when an uncaught exception occurs.
+
+        tmp.dir({dir: appRootDir, unsafeCleanup : true}, function _tempDirCreated(err, path) {
             if (err) throw err;
             tmpTestOutputFolder = path;
+
+            // now mock fs library
+            const mockedGitProperties = "git.branch=master\ngit.commit.id.abbrev=1324324\ngit.commit.time=2016-11-18T13:16:39.000Z";
+            const mockedGitPropertiesPath = tmpTestOutputFolder +  '/' + gitPropertiesFileName;
+            var mockFileSystem = {};
+            mockFileSystem[gitPropertiesExpectedDefaultFileName] = mockedGitProperties;
+            mockFileSystem[mockedGitPropertiesPath] = mockedGitProperties;
+            mock(mockFileSystem);
             done()
         });
     })
@@ -52,14 +66,18 @@ describe('executing write method', function () {
     after(function () {
         // runs after all tests have executed in this block
         utils.deleteFilesRecursivelyByName(appRootDir, gitPropertiesFileName); // delete test generated files
-        utils.deleteDirectoryRecursively(tmpTestOutputFolder);
+    });
+
+    afterEach(function () {
+        //  restore the fs module (so that it is backed by the real file system)
+        mock.restore();
     });
 
     it('should create a git.properties file', function (done) {
 
         var callback = function () {
-            var gitPropertiesDestination = appRootDir + gitPropertiesFileName;
-            checkGitPropertiesFileHasExpectedData(gitPropertiesDestination, done);
+
+            checkGitPropertiesFileHasExpectedData(gitPropertiesExpectedDefaultFileName, done);
         }
 
         properties.write(undefined, callback);
@@ -67,15 +85,14 @@ describe('executing write method', function () {
 
     it('should create a git.properties file in the destination directory given ', function (done) {
 
-        var destinationPath = tmpTestOutputFolder;
-        properties.write(destinationPath);
+        properties.write(tmpTestOutputFolder);
 
         var callback = function () {
-            var gitPropertiesDestination = destinationPath + '/' + gitPropertiesFileName;
+            var gitPropertiesDestination = tmpTestOutputFolder + '/' + gitPropertiesFileName;
             checkGitPropertiesFileHasExpectedData(gitPropertiesDestination, done);
         };
 
-        properties.write(destinationPath, callback);
+        properties.write(tmpTestOutputFolder, callback);
     });
 
     it('should return an error status if destination directory given does not exist', function (done) {

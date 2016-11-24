@@ -9,17 +9,4 @@ exports.deleteFilesRecursivelyByName = function(appRootDir, fileName) {
     spawn('sh', ['-c', shellSyntaxCommand], {stdio: 'inherit'});
 }
 
-exports.deleteDirectoryRecursively = function(directory) {
-    if (fs.existsSync(directory)) {
-        fs.readdirSync(directory).forEach(function (file) {
-            var curPath = directory + "/" + file;
-            if (fs.lstatSync(curPath).isDirectory()) { // recurse
-                this.deleteDirectoryRecursively(curPath);
-            } else { // delete file
-                fs.unlinkSync(curPath);
-            }
-        });
-        fs.rmdirSync(directory);
-    }
-}
 /* end test utility methods */
