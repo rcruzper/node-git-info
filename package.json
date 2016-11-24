@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "description": "Creates a git.properties file with git information of the current commit",
   "files": [
+    "index.js",
     "lib/",
     "bin/",
     "LICENSE",
