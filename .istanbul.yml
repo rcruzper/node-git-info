@@ -4,6 +4,7 @@ instrumentation:
   excludes:
     - '.idea/**'
     - 'build/**'
+    - 'index.js'
   embed-source: false
   complete-copy: false
   include-all-sources: true

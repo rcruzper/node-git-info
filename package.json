@@ -8,22 +8,25 @@
     "LICENSE",
     "README.md"
   ],
-  "main": "lib/gitProperties.js",
+  "main": "index.js",
   "bin": {
     "node-git-info": "bin/node-git-info"
   },
   "devDependencies": {
+    "app-root-dir": "^1.0.2",
     "chai": "3.5.0",
     "coveralls": "2.11.15",
     "eslint": "3.10.2",
     "istanbul": "0.4.5",
     "mocha": "3.1.2",
+    "mock-fs": "^3.12.1",
     "sinon": "1.17.6",
     "sinon-chai": "2.8.0",
+    "tmp": "0.0.31",
     "utils-fs-read-properties": "1.0.0"
   },
   "scripts": {
-    "start": "node lib/gitProperties",
+    "start": "node index.js",
     "test:unit": "istanbul test _mocha -- test/unit --reporter spec --recursive",
     "pretest": "eslint .",
     "test": "npm run test:unit --coverage",
@@ -36,6 +39,7 @@
   "dependencies": {
     "bluebird": "3.4.6",
     "child-process-promise": "2.2.0",
+    "command-line-args": "^3.0.3",
     "moment": "2.16.0"
   },
   "repository": {
