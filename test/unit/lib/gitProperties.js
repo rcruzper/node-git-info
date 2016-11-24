@@ -52,7 +52,7 @@ describe('executing write method', function () {
     after(function () {
         // runs after all tests have executed in this block
         utils.deleteFilesRecursivelyByName(appRootDir, gitPropertiesFileName); // delete test generated files
-        utils.deleteDirectory(tmpTestOutputFolder);
+        utils.deleteDirectoryRecursively(tmpTestOutputFolder);
     });
 
     it('should create a git.properties file', function (done) {
